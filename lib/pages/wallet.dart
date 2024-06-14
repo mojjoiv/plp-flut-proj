@@ -49,7 +49,7 @@ class _WalletState extends State<Wallet> {
                           child: Center(
                               child: Text(
                             "Wallet",
-                            // style: AppWidget.HeadlineTextFeildStyle(),
+                            style: AppWidget.HeadlineTextStyle(),
                           )))),
                   SizedBox(
                     height: 30.0,
@@ -75,14 +75,14 @@ class _WalletState extends State<Wallet> {
                           children: [
                             Text(
                               "Your Wallet",
-                              // style: AppWidget.LightTextFeildStyle(),
+                              style: AppWidget.LightTextStyle(),
                             ),
                             SizedBox(
                               height: 5.0,
                             ),
                             Text(
                               "\$" + wallet!,
-                              // style: AppWidget.boldTextFeildStyle(),
+                              style: AppWidget.boldTextStyle(),
                             )
                           ],
                         )
@@ -96,7 +96,7 @@ class _WalletState extends State<Wallet> {
                     padding: const EdgeInsets.only(left: 20.0),
                     child: Text(
                       "Add money",
-                      // style: AppWidget.semiBoldTextFeildStyle(),
+                      style: AppWidget.semiBoldTextStyle(),
                     ),
                   ),
                   SizedBox(
@@ -116,7 +116,7 @@ class _WalletState extends State<Wallet> {
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             "\$" + "100",
-                            // style: AppWidget.semiBoldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextStyle(),
                           ),
                         ),
                       ),
@@ -131,7 +131,7 @@ class _WalletState extends State<Wallet> {
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             "\$" + "500",
-                            // style: AppWidget.semiBoldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextStyle(),
                           ),
                         ),
                       ),
@@ -146,7 +146,7 @@ class _WalletState extends State<Wallet> {
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             "\$" + "1000",
-                            // style: AppWidget.semiBoldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextStyle(),
                           ),
                         ),
                       ),
@@ -161,7 +161,7 @@ class _WalletState extends State<Wallet> {
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             "\$" + "2000",
-                            // style: AppWidget.semiBoldTextFeildStyle(),
+                            style: AppWidget.semiBoldTextStyle(),
                           ),
                         ),
                       )
