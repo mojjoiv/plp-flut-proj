@@ -10,7 +10,7 @@ import 'package:ecommerceplatform/pages/onboard.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Stripe.publishableKey = publishableKey;
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

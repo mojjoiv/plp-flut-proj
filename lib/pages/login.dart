@@ -26,8 +26,8 @@ class _LogInState extends State<LogIn> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      Color(0xFFff5c30),
-                      Color(0xFFe74b1a),
+                      Color(0xff504b4a),
+                      Color(0xff050403),
                     ],
                   ),
                 ),
@@ -52,7 +52,7 @@ class _LogInState extends State<LogIn> {
                   children: [
                     Center(
                       child: Image.asset(
-                        "images/logo.png",
+                        "images/kula.png",
                         width: MediaQuery.of(context).size.width / 1.5,
                         fit: BoxFit.cover,
                       ),
@@ -144,7 +144,7 @@ class _LogInState extends State<LogIn> {
                                         EdgeInsets.symmetric(vertical: 8.0),
                                     width: 200,
                                     decoration: BoxDecoration(
-                                      color: Color(0Xffff5722),
+                                      color: Color(0xff020202),
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Center(

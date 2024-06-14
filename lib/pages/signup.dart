@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ecommerceplatform/pages/bottomnav.dart';
 import 'package:ecommerceplatform/widgets/widget_support.dart';
 import 'package:ecommerceplatform/pages/login.dart';
@@ -24,49 +24,50 @@ class _SignUpState extends State<SignUp> {
 
   registration() async {
     if (password != null) {
-      try {
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: email, password: password);
+      // try {
+      //   // UserCredential userCredential = await FirebaseAuth.instance
+      //   //     .createUserWithEmailAndPassword(email: email, password: password);
 
-        ScaffoldMessenger.of(context).showSnackBar((SnackBar(
-            backgroundColor: Colors.redAccent,
-            content: Text(
-              "Registered Successfully",
-              style: TextStyle(fontSize: 20.0),
-            ))));
-        // String Id = randomAlphaNumeric(10);
-        Map<String, dynamic> addUserInfo = {
-          "Name": namecontroller.text,
-          "Email": mailcontroller.text,
-          "Wallet": "0",
-          // "Id": Id,
-        };
-        // await DatabaseMethods().addUserDetail(addUserInfo, Id);
-        // await SharedPreferenceHelper().saveUserName(namecontroller.text);
-        // await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
-        // await SharedPreferenceHelper().saveUserWallet('0');
-        // await SharedPreferenceHelper().saveUserId(Id);
+      //   ScaffoldMessenger.of(context).showSnackBar((SnackBar(
+      //       backgroundColor: Colors.redAccent,
+      //       content: Text(
+      //         "Registered Successfully",
+      //         style: TextStyle(fontSize: 20.0),
+      //       ))));
+      //   // String Id = randomAlphaNumeric(10);
+      //   Map<String, dynamic> addUserInfo = {
+      //     "Name": namecontroller.text,
+      //     "Email": mailcontroller.text,
+      //     "Wallet": "0",
+      //     // "Id": Id,
+      //   };
+      //   // await DatabaseMethods().addUserDetail(addUserInfo, Id);
+      //   // await SharedPreferenceHelper().saveUserName(namecontroller.text);
+      //   // await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
+      //   // await SharedPreferenceHelper().saveUserWallet('0');
+      //   // await SharedPreferenceHelper().saveUserId(Id);
 
-        // ignore: use_build_context_synchronously
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => BottomNav()));
-      } on FirebaseException catch (e) {
-        if (e.code == 'weak-password') {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              backgroundColor: Colors.redAccent,
-              content: Text(
-                "Password Provided is too Weak",
-                style: TextStyle(fontSize: 18.0),
-              )));
-        } else if (e.code == "email-already-in-use") {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              backgroundColor: Colors.orangeAccent,
-              content: Text(
-                "Account Already exsists",
-                style: TextStyle(fontSize: 18.0),
-              )));
-        }
-      }
+      //   // ignore: use_build_context_synchronously
+      //   Navigator.pushReplacement(
+      //       context, MaterialPageRoute(builder: (context) => BottomNav()));
+      // }
+      // on FirebaseException catch (e) {
+      //   if (e.code == 'weak-password') {
+      //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //         backgroundColor: Colors.redAccent,
+      //         content: Text(
+      //           "Password Provided is too Weak",
+      //           style: TextStyle(fontSize: 18.0),
+      //         )));
+      //   } else if (e.code == "email-already-in-use") {
+      //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      //         backgroundColor: Colors.orangeAccent,
+      //         content: Text(
+      //           "Account Already exsists",
+      //           style: TextStyle(fontSize: 18.0),
+      //         )));
+      //   }
+      // }
     }
   }
 
@@ -86,8 +87,8 @@ class _SignUpState extends State<SignUp> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                      Color(0xFFff5c30),
-                      Color(0xFFe74b1a),
+                      Color(0xff504b4a),
+                      Color(0xff050403),
                     ])),
               ),
               Container(
@@ -108,7 +109,7 @@ class _SignUpState extends State<SignUp> {
                   children: [
                     Center(
                         child: Image.asset(
-                      "images/logo.png",
+                      "images/kula.png",
                       width: MediaQuery.of(context).size.width / 1.5,
                       fit: BoxFit.cover,
                     )),
@@ -207,7 +208,7 @@ class _SignUpState extends State<SignUp> {
                                         EdgeInsets.symmetric(vertical: 8.0),
                                     width: 200,
                                     decoration: BoxDecoration(
-                                        color: Color(0Xffff5722),
+                                        color: Color(0xff0e0d0c),
                                         borderRadius:
                                             BorderRadius.circular(20)),
                                     child: Center(
