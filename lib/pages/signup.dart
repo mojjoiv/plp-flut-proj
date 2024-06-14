@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ecommerceplatform/pages/bottomnav.dart';
 import 'package:ecommerceplatform/widgets/widget_support.dart';
 import 'package:ecommerceplatform/pages/login.dart';
@@ -14,60 +14,75 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   String email = "", password = "", name = "";
 
-  TextEditingController namecontroller = new TextEditingController();
-
-  TextEditingController passwordcontroller = new TextEditingController();
-
-  TextEditingController mailcontroller = new TextEditingController();
+  late TextEditingController namecontroller;
+  late TextEditingController passwordcontroller;
+  late TextEditingController mailcontroller;
 
   final _formkey = GlobalKey<FormState>();
 
-  registration() async {
-    if (password != null) {
-      // try {
-      //   // UserCredential userCredential = await FirebaseAuth.instance
-      //   //     .createUserWithEmailAndPassword(email: email, password: password);
+  @override
+  void initState() {
+    super.initState();
+    namecontroller = TextEditingController();
+    passwordcontroller = TextEditingController();
+    mailcontroller = TextEditingController();
+  }
 
-      //   ScaffoldMessenger.of(context).showSnackBar((SnackBar(
-      //       backgroundColor: Colors.redAccent,
-      //       content: Text(
-      //         "Registered Successfully",
-      //         style: TextStyle(fontSize: 20.0),
-      //       ))));
-      //   // String Id = randomAlphaNumeric(10);
-      //   Map<String, dynamic> addUserInfo = {
-      //     "Name": namecontroller.text,
-      //     "Email": mailcontroller.text,
-      //     "Wallet": "0",
-      //     // "Id": Id,
-      //   };
-      //   // await DatabaseMethods().addUserDetail(addUserInfo, Id);
-      //   // await SharedPreferenceHelper().saveUserName(namecontroller.text);
-      //   // await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
-      //   // await SharedPreferenceHelper().saveUserWallet('0');
-      //   // await SharedPreferenceHelper().saveUserId(Id);
+  @override
+  void dispose() {
+    namecontroller.dispose();
+    passwordcontroller.dispose();
+    mailcontroller.dispose();
+    super.dispose();
+  }
 
-      //   // ignore: use_build_context_synchronously
-      //   Navigator.pushReplacement(
-      //       context, MaterialPageRoute(builder: (context) => BottomNav()));
-      // }
-      // on FirebaseException catch (e) {
-      //   if (e.code == 'weak-password') {
-      //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      //         backgroundColor: Colors.redAccent,
-      //         content: Text(
-      //           "Password Provided is too Weak",
-      //           style: TextStyle(fontSize: 18.0),
-      //         )));
-      //   } else if (e.code == "email-already-in-use") {
-      //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      //         backgroundColor: Colors.orangeAccent,
-      //         content: Text(
-      //           "Account Already exsists",
-      //           style: TextStyle(fontSize: 18.0),
-      //         )));
-      //   }
-      // }
+  Future<void> registration() async {
+    if (_formkey.currentState!.validate()) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: email, password: password);
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.green,
+          content: Text(
+            "Registered Successfully",
+            style: TextStyle(fontSize: 20.0),
+          ),
+        ));
+
+        Map<String, dynamic> addUserInfo = {
+          "Name": namecontroller.text,
+          "Email": mailcontroller.text,
+          "Wallet": "0",
+        };
+
+        // Uncomment these lines if you have these methods implemented
+        // await DatabaseMethods().addUserDetail(addUserInfo, userCredential.user!.uid);
+        // await SharedPreferenceHelper().saveUserName(namecontroller.text);
+        // await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
+        // await SharedPreferenceHelper().saveUserWallet('0');
+        // await SharedPreferenceHelper().saveUserId(userCredential.user!.uid);
+
+        // ignore: use_build_context_synchronously
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => BottomNav()));
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.redAccent,
+              content: Text(
+                "Password Provided is too Weak",
+                style: TextStyle(fontSize: 18.0),
+              )));
+        } else if (e.code == 'email-already-in-use') {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.orangeAccent,
+              content: Text(
+                "Account Already Exists",
+                style: TextStyle(fontSize: 18.0),
+              )));
+        }
+      }
     }
   }
 
@@ -126,7 +141,7 @@ class _SignUpState extends State<SignUp> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20)),
                         child: Form(
-                          // key: _formkey,
+                          key: _formkey,
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -141,7 +156,7 @@ class _SignUpState extends State<SignUp> {
                                 height: 30.0,
                               ),
                               TextFormField(
-                                // controller: namecontroller,
+                                controller: namecontroller,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please Enter Name';
@@ -157,7 +172,7 @@ class _SignUpState extends State<SignUp> {
                                 height: 30.0,
                               ),
                               TextFormField(
-                                // controller: mailcontroller,
+                                controller: mailcontroller,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please Enter E-mail';
@@ -173,7 +188,7 @@ class _SignUpState extends State<SignUp> {
                                 height: 30.0,
                               ),
                               TextFormField(
-                                // controller: passwordcontroller,
+                                controller: passwordcontroller,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please Enter Password';
@@ -187,7 +202,7 @@ class _SignUpState extends State<SignUp> {
                                     prefixIcon: Icon(Icons.password_outlined)),
                               ),
                               SizedBox(
-                                height: 40.0, // Adjusted height here
+                                height: 40.0,
                               ),
                               GestureDetector(
                                 onTap: () async {
@@ -197,8 +212,8 @@ class _SignUpState extends State<SignUp> {
                                       name = namecontroller.text;
                                       password = passwordcontroller.text;
                                     });
+                                    await registration();
                                   }
-                                  registration();
                                 },
                                 child: Material(
                                   elevation: 5.0,
